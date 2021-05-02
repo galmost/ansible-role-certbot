@@ -9,12 +9,14 @@
   systemd:
     name: snapd.socket
     enabled: true
-
-- name: Enable classic snap support.
-  file:
-    src: /var/lib/snapd/snap
-    dest: /snap
-    state: link
+# fatal: [localhost]: FAILED! => {"changed": false, "gid": 0, "group": "root", "mode": "0755", "msg": "src file does not exist, use \"force=yes\" 
+#if you really want to create the link: /var/lib/snapd/snap", "owner": "root", "path": "/snap", "size": 4096, "src": "/var/lib/snapd/snap", "state": "directory", "uid": 0}
+#- name: Enable classic snap support.
+#  file:
+#    src: /var/lib/snapd/snap
+#    dest: /snap
+#    force: yes
+#    state: link
 
 - name: Update snap after install.
   shell: snap install core; snap refresh core
